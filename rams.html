@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LA Rams — Coach the Team | LINK Pro</title>
+<meta name="description" content="Step onto the sideline. Three coaching paths to lead the Los Angeles Rams.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --rams-blue: #003594;
+  --rams-blue-deep: #001F5B;
+  --rams-blue-mid: #0A2A6B;
+  --rams-gold: #FFD100;
+  --rams-gold-dim: #E6BC00;
+  --white: #FFFFFF;
+  --ink: #0A0E1A;
+  --muted: rgba(255, 255, 255, 0.55);
+  --serif: 'Bebas Neue', Impact, sans-serif;
+  --sans: 'Archivo', system-ui, sans-serif;
+  --side: clamp(24px, 5vw, 72px);
+  --max: 1200px;
+  --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  color: var(--white);
+  background: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+/* ── NAV ── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 20px 0;
+  background: rgba(0, 31, 91, 0.92);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(255, 209, 0, 0.18);
+}
+.nav-inner {
+  max-width: var(--max); margin: 0 auto; padding: 0 var(--side);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 1.6rem; letter-spacing: 0.08em;
+  color: var(--white);
+}
+.nav-logo span { color: var(--rams-gold); }
+.nav-links { display: flex; align-items: center; gap: 2rem; }
+.nav-links a {
+  font-size: 0.72rem; font-weight: 500;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+  transition: color 0.3s;
+}
+.nav-links a:hover,
+.nav-links a.active { color: var(--white); }
+.nav-cta {
+  color: var(--ink) !important;
+  background: var(--rams-gold);
+  padding: 0.55rem 1.25rem;
+  font-weight: 600 !important;
+  transition: background 0.3s, transform 0.3s !important;
+}
+.nav-cta:hover {
+  background: var(--rams-gold-dim);
+  transform: translateY(-1px);
+}
+.nav-dropdown { position: relative; }
+.nav-dropdown-menu {
+  display: none; position: absolute; top: 100%; left: 0;
+  background: rgba(0, 31, 91, 0.98);
+  border: 1px solid rgba(255, 209, 0, 0.15);
+  padding: 12px 0; min-width: 200px; margin-top: 8px;
+}
+.nav-dropdown:hover .nav-dropdown-menu { display: block; }
+.nav-dropdown-menu a {
+  display: block; padding: 8px 20px;
+  font-size: 0.68rem; white-space: nowrap;
+}
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex; align-items: flex-end;
+  padding: 0 var(--side) clamp(56px, 8vw, 96px);
+  overflow: hidden;
+}
+.hero__bg {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, rgba(0, 31, 91, 0.35) 0%, rgba(10, 14, 26, 0.55) 45%, rgba(10, 14, 26, 0.95) 100%),
+    linear-gradient(115deg, var(--rams-blue-deep) 0%, var(--rams-blue) 42%, #0B1F4A 100%);
+  z-index: 0;
+}
+.hero__bg::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      -18deg,
+      transparent,
+      transparent 48px,
+      rgba(255, 209, 0, 0.03) 48px,
+      rgba(255, 209, 0, 0.03) 49px
+    );
+  animation: fieldDrift 28s linear infinite;
+}
+.hero__horn {
+  position: absolute;
+  right: -8%; top: 8%;
+  width: min(55vw, 620px); height: min(55vw, 620px);
+  border-radius: 50%;
+  border: 1px solid rgba(255, 209, 0, 0.12);
+  z-index: 1;
+  animation: pulseRing 6s ease-in-out infinite;
+}
+.hero__horn::after {
+  content: '';
+  position: absolute; inset: 12%;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 209, 0, 0.08);
+}
+.hero__content {
+  position: relative; z-index: 2;
+  max-width: 720px;
+  padding-top: 120px;
+}
+.hero__brand {
+  font-family: var(--serif);
+  font-size: clamp(4.5rem, 14vw, 9.5rem);
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  color: var(--white);
+  margin-bottom: 20px;
+  opacity: 0;
+  transform: translateY(28px);
+  animation: riseIn 0.9s var(--ease) 0.15s forwards;
+}
+.hero__brand em {
+  font-style: normal;
+  color: var(--rams-gold);
+  display: block;
+}
+.hero__headline {
+  font-family: var(--sans);
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.88);
+  margin-bottom: 12px;
+  max-width: 28ch;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: riseIn 0.9s var(--ease) 0.35s forwards;
+}
+.hero__sub {
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: var(--muted);
+  max-width: 38ch;
+  margin-bottom: 36px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: riseIn 0.9s var(--ease) 0.5s forwards;
+}
+.hero__cta {
+  display: inline-block;
+  font-size: 0.75rem; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ink);
+  background: var(--rams-gold);
+  padding: 16px 36px;
+  transition: background 0.3s, transform 0.3s;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: riseIn 0.9s var(--ease) 0.65s forwards;
+}
+.hero__cta:hover {
+  background: var(--rams-gold-dim);
+  transform: translateY(-2px);
+}
+
+/* ── OPTIONS ── */
+.options {
+  padding: clamp(80px, 12vw, 120px) var(--side);
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(0, 53, 148, 0.35), transparent),
+    var(--ink);
+}
+.options__header {
+  max-width: var(--max); margin: 0 auto 56px;
+  text-align: center;
+}
+.options__label {
+  font-size: 0.68rem; font-weight: 600;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--rams-gold);
+  margin-bottom: 16px;
+  display: inline-flex; align-items: center; gap: 12px;
+}
+.options__label::before,
+.options__label::after {
+  content: ''; width: 32px; height: 1px;
+  background: var(--rams-gold);
+}
+.options__header h2 {
+  font-family: var(--serif);
+  font-size: clamp(2.8rem, 6vw, 4.5rem);
+  letter-spacing: 0.03em;
+  line-height: 1;
+  margin-bottom: 16px;
+}
+.options__header p {
+  font-size: 1rem;
+  color: var(--muted);
+  max-width: 42ch;
+  margin: 0 auto;
+}
+.options__grid {
+  max-width: var(--max); margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.option {
+  position: relative;
+  display: flex; flex-direction: column;
+  padding: 40px 32px 36px;
+  background: var(--rams-blue-mid);
+  border: 1px solid rgba(255, 209, 0, 0.12);
+  transition: border-color 0.4s, transform 0.4s var(--ease), box-shadow 0.4s;
+  cursor: pointer;
+  text-align: left;
+  color: var(--white);
+  opacity: 0;
+  transform: translateY(36px);
+}
+.option.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease), border-color 0.4s, box-shadow 0.4s;
+}
+.option:nth-child(1).visible { transition-delay: 0.05s; }
+.option:nth-child(2).visible { transition-delay: 0.15s; }
+.option:nth-child(3).visible { transition-delay: 0.25s; }
+.option:hover,
+.option.selected {
+  border-color: var(--rams-gold);
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.35);
+}
+.option.selected {
+  background: linear-gradient(160deg, var(--rams-blue) 0%, var(--rams-blue-deep) 100%);
+}
+.option__num {
+  font-family: var(--serif);
+  font-size: 3.5rem;
+  color: rgba(255, 209, 0, 0.25);
+  line-height: 1;
+  margin-bottom: 20px;
+  transition: color 0.3s;
+}
+.option:hover .option__num,
+.option.selected .option__num { color: var(--rams-gold); }
+.option__role {
+  font-size: 0.68rem; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--rams-gold);
+  margin-bottom: 10px;
+}
+.option h3 {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  letter-spacing: 0.03em;
+  line-height: 1.05;
+  margin-bottom: 16px;
+}
+.option p {
+  font-size: 0.92rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.7;
+  flex: 1;
+  margin-bottom: 28px;
+}
+.option__pick {
+  font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--rams-gold);
+  display: inline-flex; align-items: center; gap: 10px;
+}
+.option__pick::after {
+  content: '→';
+  transition: transform 0.3s;
+}
+.option:hover .option__pick::after { transform: translateX(4px); }
+.option.selected .option__pick { color: var(--white); }
+.option.selected .option__pick::before {
+  content: '✓ ';
+}
+
+/* ── CONFIRM ── */
+.confirm {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.6s var(--ease), padding 0.6s var(--ease);
+  background: var(--rams-blue-deep);
+  text-align: center;
+}
+.confirm.open {
+  max-height: 320px;
+  padding: 56px var(--side);
+}
+.confirm h3 {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: 0.04em;
+  margin-bottom: 12px;
+}
+.confirm h3 span { color: var(--rams-gold); }
+.confirm p {
+  color: var(--muted);
+  margin-bottom: 28px;
+  font-size: 0.95rem;
+}
+.confirm__btn {
+  display: inline-block;
+  font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ink);
+  background: var(--rams-gold);
+  padding: 14px 32px;
+  transition: background 0.3s, transform 0.3s;
+}
+.confirm__btn:hover {
+  background: var(--rams-gold-dim);
+  transform: translateY(-2px);
+}
+
+/* ── FOOTER ── */
+.footer {
+  background: #000814;
+  border-top: 1px solid rgba(255, 209, 0, 0.1);
+  padding: 48px 0 28px;
+}
+.footer-inner {
+  max-width: var(--max); margin: 0 auto; padding: 0 var(--side);
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 20px;
+}
+.footer-logo {
+  font-family: var(--serif);
+  font-size: 1.25rem; letter-spacing: 0.08em;
+  color: var(--white);
+}
+.footer-logo span { color: var(--rams-gold); }
+.footer p { font-size: 0.75rem; color: var(--muted); }
+.footer-links { display: flex; flex-wrap: wrap; gap: 20px; }
+.footer-links a {
+  font-size: 0.7rem; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted);
+  transition: color 0.3s;
+}
+.footer-links a:hover,
+.footer-links a.active { color: var(--rams-gold); }
+
+@keyframes riseIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fieldDrift {
+  from { background-position: 0 0; }
+  to { background-position: 120px 40px; }
+}
+@keyframes pulseRing {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.04); opacity: 1; }
+}
+
+@media (max-width: 900px) {
+  .options__grid { grid-template-columns: 1fr; max-width: 480px; }
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hero { align-items: center; min-height: 92vh; }
+  .hero__horn { right: -30%; top: 0; opacity: 0.6; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">LINK <span>PRO</span></a>
+    <ul class="nav-links">
+      <li class="nav-dropdown">
+        <a href="#">What We Do</a>
+        <div class="nav-dropdown-menu">
+          <a href="about.html">About</a>
+          <a href="services.html">Services</a>
+          <a href="somatherapy.html">SomaTherapy</a>
+        </div>
+      </li>
+      <li><a href="classes.html">Classes</a></li>
+      <li class="nav-dropdown">
+        <a href="courses.html">Courses</a>
+        <div class="nav-dropdown-menu">
+          <a href="courses.html#online">Online Courses</a>
+          <a href="courses.html#seminars">In-Person Seminars</a>
+        </div>
+      </li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="reviews.html">Reviews</a></li>
+      <li><a href="rams.html" class="active">Rams</a></li>
+      <li><a href="#coach" class="nav-cta">Coach the Rams</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero__bg" aria-hidden="true"></div>
+  <div class="hero__horn" aria-hidden="true"></div>
+  <div class="hero__content">
+    <h1 class="hero__brand">LOS ANGELES<em>RAMS</em></h1>
+    <p class="hero__headline">Your name on the headset. Their season in your hands.</p>
+    <p class="hero__sub">Pick how you want to lead SoFi — one role, one vision, one shot at a championship culture.</p>
+    <a href="#coach" class="hero__cta">Choose Your Path</a>
+  </div>
+</section>
+
+<section class="options" id="coach">
+  <div class="options__header">
+    <div class="options__label">Coaching Paths</div>
+    <h2>HOW DO YOU WANT TO LEAD?</h2>
+    <p>Three ways onto the staff. Select the role that matches how you’d run the Rams.</p>
+  </div>
+  <div class="options__grid">
+    <button type="button" class="option reveal" data-role="Head Coach" aria-pressed="false">
+      <span class="option__num">01</span>
+      <span class="option__role">Full Command</span>
+      <h3>HEAD COACH</h3>
+      <p>Own the building. Set the culture, call the timeout, and answer for every Sunday. You’re the face of the franchise and the final word on game day.</p>
+      <span class="option__pick">Select role</span>
+    </button>
+    <button type="button" class="option reveal" data-role="Offensive Coordinator" aria-pressed="false">
+      <span class="option__num">02</span>
+      <span class="option__role">Scheme Architect</span>
+      <h3>OFFENSIVE COORDINATOR</h3>
+      <p>Script the first 15, dial up the red-zone packages, and keep defenses guessing. Build an attack that travels in January.</p>
+      <span class="option__pick">Select role</span>
+    </button>
+    <button type="button" class="option reveal" data-role="Defensive Coordinator" aria-pressed="false">
+      <span class="option__num">03</span>
+      <span class="option__role">Front Seven Boss</span>
+      <h3>DEFENSIVE COORDINATOR</h3>
+      <p>Pressure the pocket, erase the middle of the field, and force the takeaways that flip games. Own the identity on that side of the ball.</p>
+      <span class="option__pick">Select role</span>
+    </button>
+  </div>
+</section>
+
+<section class="confirm" id="confirm" aria-live="polite">
+  <h3>You’re locked in as <span id="confirm-role">Head Coach</span></h3>
+  <p>Horn up. Staff meeting starts when you say so.</p>
+  <a href="index.html#contact" class="confirm__btn">Contact LINK Pro</a>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <a href="index.html" class="footer-logo">LINK <span>PRO</span></a>
+    <p>&copy; 2026 LINK Pro. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="classes.html">Classes</a>
+      <a href="courses.html">Courses</a>
+      <a href="blog.html">Blog</a>
+      <a href="reviews.html">Reviews</a>
+      <a href="rams.html" class="active">Rams</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var options = document.querySelectorAll('.option');
+  var confirm = document.getElementById('confirm');
+  var confirmRole = document.getElementById('confirm-role');
+
+  options.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      options.forEach(function (o) {
+        o.classList.remove('selected');
+        o.setAttribute('aria-pressed', 'false');
+      });
+      btn.classList.add('selected');
+      btn.setAttribute('aria-pressed', 'true');
+      confirmRole.textContent = btn.getAttribute('data-role');
+      confirm.classList.add('open');
+      confirm.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  });
+
+  document.querySelectorAll('.reveal').forEach(function (el) {
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.15 }).observe(el);
+  });
+})();
+</script>
+</body>
+</html>
