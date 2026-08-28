@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Faces of Hatha Yoga — Baja Retreat with Nicolette David | LINK Pro</title>
+<meta name="description" content="Live by the sun, love by the moon. A Baja, Mexico yoga retreat with Nicolette David. Book your stay — king rooms and shared bunks.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --slate: #7A8691;
+  --slate-dark: #667380;
+  --ink: #111111;
+  --bg: #F5F5F5;
+  --white: #FFFFFF;
+  --side: clamp(20px, 6vw, 80px);
+  --max: 1180px;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--ink);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+ul { list-style: none; }
+
+/* ── NAV ── */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--white);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.nav-inner {
+  max-width: 1440px; margin: 0 auto;
+  padding: 18px var(--side);
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+}
+.nav-logo {
+  font-weight: 800; letter-spacing: 0.08em;
+  font-size: 1.05rem; text-transform: uppercase; flex-shrink: 0;
+}
+.nav-links {
+  display: flex; align-items: center; gap: 28px;
+}
+.nav-links a {
+  font-size: 0.92rem; font-weight: 500; color: var(--ink);
+}
+.nav-links a:hover { opacity: 0.55; }
+.nav-links a.active { font-weight: 700; }
+.hamburger {
+  display: none; flex-direction: column; gap: 5px; width: 26px;
+}
+.hamburger span { display: block; height: 2px; background: var(--ink); }
+.mobile-nav {
+  display: none; flex-direction: column; gap: 16px;
+  padding: 8px var(--side) 24px;
+  background: var(--white);
+}
+.mobile-nav.open { display: flex; }
+.mobile-nav a { font-size: 1rem; font-weight: 500; }
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  min-height: min(78vh, 820px);
+  display: flex; align-items: flex-end;
+  color: var(--white);
+  overflow: hidden;
+}
+.hero img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center 40%;
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.28) 100%);
+}
+.hero-inner {
+  position: relative; z-index: 1;
+  width: 100%;
+  padding: 48px var(--side) 56px;
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 24px;
+}
+.hero-title {
+  font-size: clamp(2.2rem, 5.2vw, 4.4rem);
+  font-weight: 800; letter-spacing: -0.02em;
+  text-transform: uppercase; line-height: 0.95;
+  max-width: 14ch;
+}
+.hero-star {
+  display: block; font-size: 0.55em; line-height: 1; margin-bottom: 8px;
+}
+.btn-register {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 14px 42px;
+  background: rgba(122, 134, 145, 0.82);
+  border: 1.5px solid rgba(255,255,255,0.85);
+  color: var(--white);
+  font-size: 0.82rem; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  border-radius: 999px;
+  transition: background 0.25s;
+  white-space: nowrap;
+}
+.btn-register:hover { background: rgba(102, 115, 128, 0.95); }
+
+/* ── TAGLINE ── */
+.tagline {
+  background: var(--slate);
+  color: var(--white);
+  text-align: center;
+  padding: 56px var(--side);
+}
+.tagline h2 {
+  font-size: clamp(1.6rem, 3.4vw, 2.6rem);
+  font-weight: 800; text-transform: uppercase;
+  letter-spacing: 0.02em; line-height: 1.15;
+}
+.tagline p {
+  margin-top: 10px;
+  font-size: clamp(0.95rem, 1.6vw, 1.2rem);
+  font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ── DAY ── */
+.day {
+  background: var(--bg);
+  padding: 72px var(--side) 80px;
+}
+.day h2,
+.instructor h2,
+.stay h2 {
+  font-size: clamp(1.8rem, 3.6vw, 2.8rem);
+  font-weight: 800; text-transform: uppercase;
+  letter-spacing: -0.02em;
+  margin-bottom: 40px;
+}
+.day-grid {
+  max-width: var(--max); margin: 0 auto;
+  display: grid; grid-template-columns: 1.15fr 0.85fr;
+  gap: 48px 64px; align-items: start;
+}
+.day-grid img {
+  width: 100%; aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+.schedule {
+  padding-top: 8px;
+}
+.schedule li {
+  display: flex; gap: 10px;
+  font-size: 1.12rem; font-weight: 500;
+  padding: 7px 0;
+}
+.schedule li::before {
+  content: '';
+  width: 7px; height: 7px; margin-top: 10px;
+  background: var(--ink); border-radius: 50%; flex-shrink: 0;
+}
+.schedule strong { font-weight: 800; }
+
+/* ── INSTRUCTOR ── */
+.instructor {
+  background: var(--bg);
+  padding: 40px var(--side) 88px;
+}
+.instructor-copy {
+  max-width: 920px;
+}
+.instructor p {
+  font-size: 1.08rem; line-height: 1.7;
+  margin-bottom: 1.35rem;
+}
+
+/* ── STAY ── */
+.stay {
+  background: var(--white);
+  padding: 72px var(--side) 120px;
+  text-align: center;
+}
+.stay h2 { margin-bottom: 48px; }
+.rooms {
+  max-width: var(--max); margin: 0 auto;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 28px; text-align: left;
+}
+.room img {
+  width: 100%; aspect-ratio: 4 / 3; object-fit: cover; margin-bottom: 16px;
+}
+.room h3 {
+  font-size: 1.05rem; font-weight: 800; line-height: 1.3;
+  margin-bottom: 8px;
+}
+.room .price {
+  font-size: 1.15rem; font-weight: 800; margin-bottom: 18px;
+}
+.book-btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 100%; padding: 14px 18px;
+  background: var(--slate); color: var(--white);
+  font-size: 0.78rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+.book-btn:hover { background: var(--slate-dark); }
+.book-row {
+  display: flex; align-items: center; gap: 10px;
+}
+.qty {
+  display: flex; align-items: center; justify-content: space-between;
+  min-width: 108px; height: 46px;
+  border: 1.5px solid var(--ink);
+  border-radius: 999px; padding: 0 14px;
+  font-weight: 600;
+}
+.qty button { font-size: 1.2rem; line-height: 1; width: 22px; }
+.book-row .book-btn { flex: 1; }
+
+/* ── CART ── */
+.cart-fab {
+  position: fixed; right: 18px; bottom: 18px; z-index: 200;
+  width: 56px; height: 56px;
+  background: var(--slate); color: var(--white);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+}
+.cart-fab svg { width: 26px; height: 26px; }
+.cart-badge {
+  position: absolute; top: 8px; right: 8px;
+  min-width: 18px; height: 18px; padding: 0 4px;
+  background: var(--white); color: var(--slate);
+  border-radius: 50%;
+  font-size: 0.7rem; font-weight: 800;
+  display: none; align-items: center; justify-content: center;
+}
+.cart-badge.show { display: flex; }
+
+.cart-panel {
+  position: fixed; right: 18px; bottom: 84px; z-index: 201;
+  width: min(380px, calc(100vw - 36px));
+  background: var(--white);
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 16px 50px rgba(0,0,0,0.18);
+  padding: 22px;
+  display: none;
+}
+.cart-panel.open { display: block; }
+.cart-panel h3 {
+  font-size: 0.78rem; letter-spacing: 0.16em;
+  text-transform: uppercase; margin-bottom: 16px;
+}
+.cart-empty { font-size: 0.92rem; color: #666; }
+.cart-item {
+  display: flex; justify-content: space-between; gap: 12px;
+  padding: 12px 0; border-bottom: 1px solid #eee;
+  font-size: 0.88rem;
+}
+.cart-item button.remove { color: #888; font-size: 0.75rem; }
+.cart-total {
+  display: flex; justify-content: space-between;
+  font-weight: 800; margin: 16px 0;
+}
+.checkout {
+  width: 100%; padding: 14px;
+  background: var(--slate); color: var(--white);
+  font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; border-radius: 8px;
+}
+.checkout-note {
+  display: none; margin-top: 14px;
+  font-size: 0.88rem; line-height: 1.5; color: #444;
+}
+
+.footer {
+  background: #111; color: #fff;
+  padding: 36px var(--side);
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  font-size: 0.78rem;
+}
+.footer a { color: #aaa; }
+.footer a:hover { color: #fff; }
+.footer-links { display: flex; gap: 20px; }
+
+@media (max-width: 900px) {
+  .rooms { grid-template-columns: 1fr; max-width: 520px; }
+  .day-grid { grid-template-columns: 1fr; }
+  .hero-inner { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 860px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">LINK Pro</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">What We Do</a>
+      <a href="courses.html#upcoming">Upcoming Courses</a>
+      <a href="classes.html">Classes</a>
+      <a href="courses.html">Courses</a>
+      <a href="reviews.html">Reviews</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html">Home</a>
+    <a href="about.html">What We Do</a>
+    <a href="courses.html#upcoming">Upcoming Courses</a>
+    <a href="classes.html">Classes</a>
+    <a href="courses.html">Courses</a>
+    <a href="reviews.html">Reviews</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <img src="images/nic/hero.jpg" alt="Desert resort pool and patio in Baja, Mexico">
+  <div class="hero-overlay"></div>
+  <div class="hero-inner">
+    <h1 class="hero-title"><span class="hero-star" aria-hidden="true">*</span>The Faces of Hatha Yoga</h1>
+    <a class="btn-register" href="#stay">Register</a>
+  </div>
+</section>
+
+<section class="tagline">
+  <h2>Live by the sun, love by the moon</h2>
+  <p>Baja, Mexico retreat with Nicolette David</p>
+</section>
+
+<section class="day">
+  <div class="day-grid">
+    <div>
+      <h2>What a day looks like</h2>
+      <img src="images/nic/day.jpg" alt="Rooftop terrace with built-in seating and a fire pit">
+    </div>
+    <ul class="schedule">
+      <li><span><strong>7–8am</strong> coffee, tea, fruit</span></li>
+      <li><span><strong>8am</strong> morning meditation</span></li>
+      <li><span><strong>8:30am</strong> Sun Practice</span></li>
+      <li><span><strong>10am</strong> Breakfast/Brunch</span></li>
+      <li><span><strong>11am–2pm</strong> Rest, Relax, Explore</span></li>
+      <li><span><strong>2:30pm</strong> Afternoon Snack</span></li>
+      <li><span><strong>4:30pm</strong> Moon Practice</span></li>
+      <li><span><strong>6pm</strong> Dinner</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="instructor">
+  <div class="instructor-copy">
+    <h2>Meet your instructor</h2>
+    <p>Nicolette David, hailing from Catalina Island, was a high school teacher of languages, literature, biology, and movement since 2001 but found her true passion in 2009 when she reluctantly took her first yoga class. In Savasana (corpse pose), she was moved by the methods and magic of yoga to hold tenderly stored grief, anger, anxiety, and the ultimate unknown that is Life. The combined effects of moving, breathing, paying attention, getting quiet left an indelible memory and to be part of helping others find a moment, a minute, a day, or continued clarity and calm is the inspiration of Nicolette’s teaching.</p>
+    <p>She has led 200 hour trainings for various studios, taught workshops, and led retreats both locally and internationally and was a mentor and guest lecturer for Yogaworks’ 300 hour professional program. Her personal studies are in Anatomy and she enjoys drawing connections between the inseparable body, mind and Spirit. Her teaching focuses on alignment not for the sake of getting things “right” but with the intention of locating ourselves from within and diving into the mystery of our cosmic flesh. Her teaching is full of heart, creativity, and the hope that students FEEL themselves beyond the physical realm using their breath and their eyes that see from, and into, all possible perspectives.</p>
+    <p>She is a wife to Dr. Amstutz, a mama to 2 girls, a trauma survivor, dog mom to a Great Dane named Noble and gets loads of ‘YOGA as life’ practice staying calm and connected in the wild outback of parenting.</p>
+  </div>
+</section>
+
+<section class="stay" id="stay">
+  <h2>Book your stay</h2>
+  <div class="rooms">
+    <article class="room">
+      <img src="images/nic/room-king-single.jpg" alt="King bedroom with en-suite bathroom, single occupancy">
+      <h3>King Bed/En-Suite Bathroom (Single Occupancy)</h3>
+      <p class="price">$2,350.00</p>
+      <button class="book-btn" data-id="king-single" data-name="King Bed/En-Suite Bathroom (Single Occupancy)" data-price="2350">Book a Room</button>
+    </article>
+    <article class="room">
+      <img src="images/nic/room-king-double.jpg" alt="King bedroom with en-suite bathroom, double occupancy">
+      <h3>King Bed/En-Suite Bathroom (Double Occupancy)</h3>
+      <p class="price">$3,150.00</p>
+      <button class="book-btn" data-id="king-double" data-name="King Bed/En-Suite Bathroom (Double Occupancy)" data-price="3150">Book a Room</button>
+    </article>
+    <article class="room">
+      <img src="images/nic/room-bunk.jpg" alt="Shared bunk room">
+      <h3>Cuatro/Bunk Shared Room</h3>
+      <p class="price">$1,350.00</p>
+      <div class="book-row">
+        <div class="qty">
+          <button type="button" id="qtyMinus" aria-label="Decrease quantity">−</button>
+          <span id="qtyValue">1</span>
+          <button type="button" id="qtyPlus" aria-label="Increase quantity">+</button>
+        </div>
+        <button class="book-btn" data-id="bunk" data-name="Cuatro/Bunk Shared Room" data-price="1350" data-uses-qty="true">Book a Bed</button>
+      </div>
+    </article>
+  </div>
+</section>
+
+<button class="cart-fab" id="cartFab" aria-label="Open cart">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+    <circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/>
+    <path d="M3 4h2l2.4 11.2a1.6 1.6 0 0 0 1.6 1.3h8.7a1.6 1.6 0 0 0 1.55-1.2L21 8H7"/>
+  </svg>
+  <span class="cart-badge" id="cartBadge">0</span>
+</button>
+
+<aside class="cart-panel" id="cartPanel" aria-label="Shopping cart">
+  <h3>Your stay</h3>
+  <div id="cartItems"><p class="cart-empty">Your cart is empty.</p></div>
+  <div class="cart-total" id="cartTotalRow" hidden>
+    <span>Total</span>
+    <span id="cartTotal">$0.00</span>
+  </div>
+  <button class="checkout" id="checkoutBtn" hidden>Checkout</button>
+  <p class="checkout-note" id="checkoutNote">Thank you. We’ll follow up to confirm dates and payment for your Baja retreat with Nicolette.</p>
+</aside>
+
+<footer class="footer">
+  <a href="index.html">LINK Pro</a>
+  <div class="footer-links">
+    <a href="blog.html">Blog</a>
+    <a href="nic.html">Nic</a>
+    <a href="rams.html">Rams</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var hamburger = document.getElementById('hamburger');
+  var mobileNav = document.getElementById('mobileNav');
+  hamburger.addEventListener('click', function () {
+    mobileNav.classList.toggle('open');
+  });
+
+  var qty = 1;
+  var qtyValue = document.getElementById('qtyValue');
+  document.getElementById('qtyMinus').addEventListener('click', function () {
+    qty = Math.max(1, qty - 1);
+    qtyValue.textContent = qty;
+  });
+  document.getElementById('qtyPlus').addEventListener('click', function () {
+    qty = Math.min(8, qty + 1);
+    qtyValue.textContent = qty;
+  });
+
+  var cart = [];
+  var panel = document.getElementById('cartPanel');
+  var badge = document.getElementById('cartBadge');
+  var itemsEl = document.getElementById('cartItems');
+  var totalRow = document.getElementById('cartTotalRow');
+  var totalEl = document.getElementById('cartTotal');
+  var checkoutBtn = document.getElementById('checkoutBtn');
+  var checkoutNote = document.getElementById('checkoutNote');
+
+  function money(n) {
+    return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
+  function count() {
+    return cart.reduce(function (sum, item) { return sum + item.qty; }, 0);
+  }
+
+  function render() {
+    var n = count();
+    badge.textContent = n;
+    badge.classList.toggle('show', n > 0);
+    if (!cart.length) {
+      itemsEl.innerHTML = '<p class="cart-empty">Your cart is empty.</p>';
+      totalRow.hidden = true;
+      checkoutBtn.hidden = true;
+      return;
+    }
+    itemsEl.innerHTML = cart.map(function (item, i) {
+      return '<div class="cart-item"><div><strong>' + item.name + '</strong><br>' + item.qty + ' × ' + money(item.price) + '</div><div>' + money(item.price * item.qty) + '<br><button class="remove" data-i="' + i + '">Remove</button></div></div>';
+    }).join('');
+    var total = cart.reduce(function (sum, item) { return sum + item.price * item.qty; }, 0);
+    totalEl.textContent = money(total);
+    totalRow.hidden = false;
+    checkoutBtn.hidden = false;
+  }
+
+  document.querySelectorAll('.book-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var id = btn.getAttribute('data-id');
+      var name = btn.getAttribute('data-name');
+      var price = Number(btn.getAttribute('data-price'));
+      var addQty = btn.getAttribute('data-uses-qty') ? qty : 1;
+      var existing = cart.find(function (item) { return item.id === id; });
+      if (existing) existing.qty += addQty;
+      else cart.push({ id: id, name: name, price: price, qty: addQty });
+      checkoutNote.style.display = 'none';
+      render();
+      panel.classList.add('open');
+    });
+  });
+
+  itemsEl.addEventListener('click', function (e) {
+    if (!e.target.classList.contains('remove')) return;
+    cart.splice(Number(e.target.getAttribute('data-i')), 1);
+    render();
+  });
+
+  document.getElementById('cartFab').addEventListener('click', function () {
+    panel.classList.toggle('open');
+  });
+
+  checkoutBtn.addEventListener('click', function () {
+    checkoutNote.style.display = 'block';
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
