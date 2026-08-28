@@ -100,6 +100,16 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   padding: 0 var(--side) clamp(56px, 8vw, 96px);
   overflow: hidden;
 }
+.hero__inner {
+  position: relative; z-index: 2;
+  width: 100%;
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 42%);
+  align-items: end;
+  gap: clamp(32px, 5vw, 64px);
+}
 .hero__bg {
   position: absolute; inset: 0;
   background:
@@ -139,6 +149,57 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   position: relative; z-index: 2;
   max-width: 720px;
   padding-top: 120px;
+}
+.hero__media {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  max-height: min(68vh, 560px);
+  align-self: end;
+  opacity: 0;
+  transform: translateY(28px);
+  animation: riseIn 0.9s var(--ease) 0.4s forwards;
+}
+.hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border: 1px solid rgba(255, 209, 0, 0.28);
+}
+.hero__media-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background:
+    linear-gradient(160deg, rgba(0, 53, 148, 0.45) 0%, rgba(0, 31, 91, 0.7) 100%);
+  border: 1.5px dashed rgba(255, 209, 0, 0.45);
+  color: var(--rams-gold);
+  text-align: center;
+  padding: 24px;
+}
+.hero__media-placeholder svg {
+  width: 48px;
+  height: 48px;
+  opacity: 0.85;
+}
+.hero__media-placeholder span {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.hero__media-placeholder small {
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--muted);
 }
 .hero__brand {
   font-family: var(--serif);
@@ -394,10 +455,20 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 @media (max-width: 900px) {
   .options__grid { grid-template-columns: 1fr; max-width: 480px; }
+  .hero { align-items: center; }
+  .hero__inner { grid-template-columns: 1fr; }
+  .hero__media {
+    order: -1;
+    max-height: 320px;
+    aspect-ratio: 16 / 10;
+    margin-top: 96px;
+  }
+  .hero__content { padding-top: 0; }
 }
 @media (max-width: 768px) {
   .nav-links { display: none; }
-  .hero { align-items: center; min-height: 92vh; }
+  .hero { min-height: 92vh; }
+  .hero__media { max-height: 280px; }
   .hero__horn { right: -30%; top: 0; opacity: 0.6; }
 }
 </style>
@@ -435,11 +506,25 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 <section class="hero">
   <div class="hero__bg" aria-hidden="true"></div>
   <div class="hero__horn" aria-hidden="true"></div>
-  <div class="hero__content">
-    <h1 class="hero__brand">LOS ANGELES<em>RAMS</em></h1>
-    <p class="hero__headline">Your name on the headset. Their season in your hands.</p>
-    <p class="hero__sub">Pick how you want to lead SoFi — one role, one vision, one shot at a championship culture.</p>
-    <a href="#coach" class="hero__cta">Choose Your Path</a>
+  <div class="hero__inner">
+    <div class="hero__content">
+      <h1 class="hero__brand">LOS ANGELES<em>RAMS</em></h1>
+      <p class="hero__headline">Your name on the headset. Their season in your hands.</p>
+      <p class="hero__sub">Pick how you want to lead SoFi — one role, one vision, one shot at a championship culture.</p>
+      <a href="#coach" class="hero__cta">Choose Your Path</a>
+    </div>
+    <div class="hero__media">
+      <!-- Swap this placeholder for: <img src="images/rams-hero.jpg" alt="Los Angeles Rams"> -->
+      <div class="hero__media-placeholder" role="img" aria-label="Hero image placeholder">
+        <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+          <rect x="6" y="10" width="36" height="28" rx="2" stroke="currentColor" stroke-width="1.75"/>
+          <circle cx="16" cy="20" r="3" stroke="currentColor" stroke-width="1.75"/>
+          <path d="M10 34l9.5-11 7 8 4.5-5L38 34" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/>
+        </svg>
+        <span>Image placeholder</span>
+        <small>Hero photo goes here</small>
+      </div>
+    </div>
   </div>
 </section>
 
