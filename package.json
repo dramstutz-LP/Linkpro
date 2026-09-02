@@ -5,7 +5,8 @@
   "description": "LINK Pro static site with Stripe payment handling",
   "scripts": {
     "start": "node server/index.js",
-    "dev": "node --watch server/index.js"
+    "dev": "node --watch server/index.js",
+    "vercel:dev": "vercel dev"
   },
   "engines": {
     "node": ">=18"
