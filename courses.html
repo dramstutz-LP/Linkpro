@@ -24,8 +24,13 @@
 .course-card p{font-size:.88rem;line-height:1.7;color:rgba(26,26,26,0.55);margin-bottom:20px;flex:1}
 .course-price{font-family:var(--serif);font-size:1.8rem;color:var(--charcoal);margin-bottom:4px}
 .course-meta{font-size:.72rem;color:var(--gold-dark);font-weight:500;margin-bottom:24px}
-.course-cta{display:block;text-align:center;padding:14px;background:var(--charcoal);color:#fff;font-size:.7rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;transition:all .3s}
+.course-cta{display:block;text-align:center;padding:14px;background:var(--charcoal);color:#fff;font-size:.7rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;transition:all .3s;border:0;cursor:pointer;width:100%;font-family:inherit}
 .course-cta:hover{background:var(--gold);color:var(--charcoal)}
+.course-cta.is-loading{opacity:.7;cursor:wait}
+.course-cta-secondary{display:block;text-align:center;margin-top:10px;font-size:.68rem;color:var(--gold-dark);text-decoration:underline;text-underline-offset:3px}
+.course-cta-secondary:hover{color:var(--charcoal)}
+.seminar-cta{border:0;cursor:pointer;font-family:inherit}
+.seminar-cta.is-loading{opacity:.7;cursor:wait}
 
 /* SEMINARS */
 .seminar-section{background:var(--charcoal);padding:80px 0}
@@ -81,7 +86,8 @@
         <p>Foundational understanding of pelvic anatomy, assessment, and treatment principles. Your starting point for the pelvis-centered approach.</p>
         <div class="course-price">$100</div>
         <div class="course-meta">✦ Unlimited Lifetime Access</div>
-        <a href="pelvis-1-course.html" class="course-cta">Open Test Course</a>
+        <button type="button" class="course-cta" data-stripe-product="pelvis-1">Enroll Now — $100</button>
+        <a href="pelvis-1-course.html" class="course-cta-secondary">Preview test course</a>
       </div>
       <div class="course-card reveal">
         <span class="course-badge">Self-Paced</span>
@@ -96,7 +102,7 @@
         <p>Comprehensive protocols for preventing and addressing lower limb injuries through fascial chain assessment and targeted intervention.</p>
         <div class="course-price">$199</div>
         <div class="course-meta">✦ Unlimited Lifetime Access</div>
-        <a href="https://www.linkprosport.com/llip" class="course-cta" target="_blank">Enroll Now</a>
+        <button type="button" class="course-cta" data-stripe-product="llip">Enroll Now — $199</button>
       </div>
     </div>
   </div>
@@ -118,7 +124,7 @@
         </div>
         <div class="seminar-price-block">
           <span class="seminar-price">$1,500</span>
-          <a href="https://www.linkprosport.com/fascia2tls" class="seminar-cta" target="_blank">Register</a>
+          <button type="button" class="seminar-cta" data-stripe-product="seminar-upper-limb">Register — $1,500</button>
         </div>
       </div>
       <div class="seminar reveal">
@@ -164,6 +170,7 @@
 </section>
 
 <footer class="footer"><div class="container"><div class="footer-inner"><a href="index.html" class="footer-logo">LINK <span>PRO</span></a><p>&copy; 2026 LINK Pro. All rights reserved.</p><div class="footer-links"><a href="blog.html">Blog</a><a href="rams.html">Rams</a><a href="index.html#contact">Contact</a><a href="https://www.instagram.com/linkprosport/" target="_blank">Instagram</a></div></div></div></footer>
+<script src="js/stripe-checkout.js"></script>
 <script>document.querySelectorAll('.reveal').forEach(function(el){new IntersectionObserver(function(e){e.forEach(function(entry){if(entry.isIntersecting){entry.target.classList.add('visible')}})},{threshold:.1}).observe(el)});</script>
 </body>
 </html>
