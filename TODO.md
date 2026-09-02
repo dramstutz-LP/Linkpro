@@ -54,14 +54,71 @@ Local testing:
 - [ ] Restart the server and complete a test checkout
 - [ ] Confirm server logs `Payment complete:` for `checkout.session.completed`
 
-Production (when deployed):
+Production (when deployed on Vercel):
 
-- [ ] Deploy the Node server (static-only hosting is not enough)
-- [ ] Set `BASE_URL` to your live domain in production env
+- [ ] Complete the **Vercel deployment** checklist below
 - [ ] Add webhook endpoint `https://your-domain.com/api/webhooks/stripe` in Stripe Dashboard
 - [ ] Subscribe to `checkout.session.completed`
+- [ ] Copy the webhook signing secret into Vercel as `STRIPE_WEBHOOK_SECRET` and redeploy
 
 ---
+
+## Vercel deployment
+
+Merge [`cursor/vercel-setup-fb18`](https://github.com/dramstutz-LP/Linkpro/pull/4) (or ensure `api/` routes and `vercel.json` are on your deploy branch) before deploying.
+
+### Connect the project
+
+- [ ] Go to [vercel.com/new](https://vercel.com/new) and import `dramstutz-LP/Linkpro`
+- [ ] Framework preset: **Other** (no build command needed)
+- [ ] Leave **Build Command** and **Output Directory** empty
+- [ ] Set production branch to `stripe-test` (or `main` after merge)
+- [ ] Deploy once to get a preview URL (e.g. `https://linkpro-xxx.vercel.app`)
+
+### Environment variables
+
+In Vercel → Project → **Settings → Environment Variables**, add:
+
+- [ ] `BASE_URL` → your production URL (e.g. `https://linkpro.com` or your `.vercel.app` URL for testing)
+- [ ] `STRIPE_SECRET_KEY` → `sk_test_...` for preview, `sk_live_...` for production
+- [ ] `STRIPE_PUBLISHABLE_KEY` → `pk_test_...` or `pk_live_...`
+- [ ] `STRIPE_WEBHOOK_SECRET` → add after creating the webhook endpoint (see below)
+- [ ] `STRIPE_PRICE_PELVIS_1` → Stripe Price ID
+- [ ] `STRIPE_PRICE_LLIP` → Stripe Price ID
+- [ ] `STRIPE_PRICE_SEMINAR` → Stripe Price ID
+
+Apply to **Production** (and **Preview** if you want checkout on preview deploys).
+
+### Stripe webhook (production)
+
+- [ ] Stripe Dashboard → **Developers → Webhooks → Add endpoint**
+- [ ] URL: `https://your-domain.com/api/webhooks/stripe`
+- [ ] Event: `checkout.session.completed`
+- [ ] Copy the signing secret (`whsec_...`) into Vercel as `STRIPE_WEBHOOK_SECRET`
+- [ ] Redeploy so the new env var is picked up
+- [ ] Complete a test checkout and confirm Vercel function logs show `Payment complete:`
+
+### Custom domain (optional)
+
+- [ ] Vercel → Project → **Domains** → add your domain
+- [ ] Update DNS with the records Vercel provides
+- [ ] Update `BASE_URL` in Vercel to match the custom domain
+- [ ] Update the Stripe webhook URL to use the custom domain
+- [ ] Redeploy
+
+### Verify production checkout
+
+- [ ] Open `https://your-domain.com/courses.html`
+- [ ] Click **Enroll Now** — Stripe Checkout opens
+- [ ] Complete payment (test card in test mode, real card only with live keys)
+- [ ] Land on `checkout-success.html` with payment verified
+
+### Go live
+
+- [ ] Switch Stripe env vars in Vercel from test keys to live keys
+- [ ] Create a separate Stripe webhook endpoint for live mode (or update existing)
+- [ ] Confirm Stripe account activation is complete before accepting real payments
+
 
 ## Stripe follow-ups (after basic checkout works)
 
